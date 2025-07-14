@@ -17,20 +17,170 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <div class="nav-container">
+  <a href="index.html" class="logo">Faheem's Blog</a>
+  <div class="theme-switcher">
+    <button class="theme-btn" data-theme="dark" title="Dark Theme">
+      <span class="theme-icon">🌙</span>
+    </button>
+    <button class="theme-btn" data-theme="light" title="Light Theme">
+      <span class="theme-icon">☀️</span>
+    </button>
+    <button class="theme-btn" data-theme="glass" title="Glass Theme">
+      <span class="theme-icon">💎</span>
+    </button>
+  </div>
+</div>
   <style>
     :root {
-      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-      --dark-bg: #0a0a0a;
-      --card-bg: rgba(255, 255, 255, 0.05);
-      --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.8);
-      --text-muted: rgba(255, 255, 255, 0.6);
-      --border-color: rgba(255, 255, 255, 0.1);
-      --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      --glow: 0 0 30px rgba(102, 126, 234, 0.3);
-    }
+  /* Dark Theme (your current theme) */
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --dark-bg: #0a0a0a;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  --glow: 0 0 30px rgba(102, 126, 234, 0.3);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --dark-bg: #ffffff;
+  --card-bg: rgba(0, 0, 0, 0.05);
+  --text-primary: #1a1a1a;
+  --text-secondary: rgba(0, 0, 0, 0.8);
+  --text-muted: rgba(0, 0, 0, 0.6);
+  --border-color: rgba(0, 0, 0, 0.1);
+  --shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  --glow: 0 0 30px rgba(102, 126, 234, 0.2);
+}
+
+/* Theme Switcher Styles */
+.theme-switcher {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  background: var(--card-bg);
+  padding: 0.5rem;
+  border-radius: 50px;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+}
+
+.theme-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.theme-btn:hover {
+  background: var(--card-bg);
+  transform: scale(1.1);
+}
+
+.theme-btn.active {
+  background: var(--primary-gradient);
+  transform: scale(1.1);
+  box-shadow: var(--glow);
+}
+
+.theme-icon {
+  font-size: 1.2rem;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.theme-btn:hover .theme-icon {
+  transform: rotate(10deg);
+}
+
+.theme-btn.active .theme-icon {
+  transform: scale(1.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .theme-switcher {
+    gap: 0.25rem;
+    padding: 0.25rem;
+  }
+  
+  .theme-btn {
+    width: 35px;
+    height: 35px;
+    padding: 0.25rem;
+  }
+  
+  .theme-icon {
+    font-size: 1rem;
+  }
+}
+
+/* Smooth transitions for theme changes */
+body, 
+.header, 
+.blog-container, 
+.cta-box, 
+.back-link {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+/* Glass Theme */
+[data-theme="glass"] {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --dark-bg: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.9);
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --border-color: rgba(255, 255, 255, 0.2);
+  --shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  --glow: 0 0 40px rgba(102, 126, 234, 0.4);
+}
+
+/* Update body background for glass theme */
+[data-theme="glass"] body {
+  background: var(--dark-bg);
+}
+
+/* Enhanced glassmorphism effects for glass theme */
+[data-theme="glass"] .blog-container {
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="glass"] .header {
+  backdrop-filter: blur(25px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="glass"] .cta-box {
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
     * {
       margin: 0;
@@ -585,6 +735,87 @@
       el.style.transition = 'all 0.8s ease-out';
       observer.observe(el);
     });
+    // Theme Switcher JavaScript
+class ThemeSwitcher {
+  constructor() {
+    this.currentTheme = localStorage.getItem('theme') || 'dark';
+    this.init();
+  }
+
+  init() {
+    // Apply saved theme
+    this.applyTheme(this.currentTheme);
+    
+    // Add event listeners
+    this.setupEventListeners();
+    
+    // Update active button
+    this.updateActiveButton();
+  }
+
+  setupEventListeners() {
+    const themeButtons = document.querySelectorAll('.theme-btn');
+    themeButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const theme = e.currentTarget.dataset.theme;
+        this.switchTheme(theme);
+      });
+    });
+  }
+
+  switchTheme(theme) {
+    this.currentTheme = theme;
+    this.applyTheme(theme);
+    this.updateActiveButton();
+    localStorage.setItem('theme', theme);
+  }
+
+  applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    
+    // Add special handling for light theme body background
+    if (theme === 'light') {
+      document.body.style.background = '#ffffff';
+    } else {
+      document.body.style.background = '';
+    }
+  }
+
+  updateActiveButton() {
+    const themeButtons = document.querySelectorAll('.theme-btn');
+    themeButtons.forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.dataset.theme === this.currentTheme) {
+        btn.classList.add('active');
+      }
+    });
+  }
+}
+
+// Initialize theme switcher when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new ThemeSwitcher();
+});
+
+// Optional: Add keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  if (e.altKey) {
+    switch(e.key) {
+      case '1':
+        e.preventDefault();
+        document.querySelector('[data-theme="dark"]').click();
+        break;
+      case '2':
+        e.preventDefault();
+        document.querySelector('[data-theme="light"]').click();
+        break;
+      case '3':
+        e.preventDefault();
+        document.querySelector('[data-theme="glass"]').click();
+        break;
+    }
+  }
+});
   </script>
 </body>
 
