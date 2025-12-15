@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Cybersecurity Insights</title>
+    <title>Cybersecurity Blog - Faheem</title>
     <meta name="description" content="Stay ahead of cyber threats with expert insights on cybersecurity, penetration testing, and digital defense strategies.">
     
     <!-- Fonts -->
@@ -13,19 +13,14 @@
     
     <style>
         :root {
-            --primary-color: #00ff88;
-            --secondary-color: #0a0a0a;
-            --accent-color: #ff3366;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --background-dark: #0d0d0d;
-            --background-darker: #050505;
-            --card-bg: rgba(20, 20, 20, 0.8);
-            --gradient-1: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
-            --gradient-2: linear-gradient(135deg, #ff3366 0%, #cc2952 100%);
-            --gradient-3: linear-gradient(135deg, #3366ff 0%, #2952cc 100%);
-            --shadow-glow: 0 0 30px rgba(0, 255, 136, 0.3);
-            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --bg-dark: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: #111111;
+            --orange: #ff6b35;
+            --orange-hover: #ff8555;
+            --white: #ffffff;
+            --gray-light: #a0a0a0;
+            --gray-border: #222222;
         }
 
         * {
@@ -34,30 +29,16 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--background-darker);
-            color: var(--text-primary);
+            background: var(--bg-dark);
+            color: var(--white);
             overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 20% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(255, 51, 102, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 40%, rgba(51, 102, 255, 0.1) 0%, transparent 50%);
-            animation: backgroundShift 20s ease-in-out infinite;
-        }
-
-        @keyframes backgroundShift {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(1deg); }
+            line-height: 1.6;
         }
 
         /* Header */
@@ -65,9 +46,9 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(13, 13, 13, 0.95);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--gray-border);
             z-index: 1000;
             transition: all 0.3s ease;
         }
@@ -75,46 +56,64 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-family: 'JetBrains Mono', monospace;
             font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-weight: 800;
+            color: var(--white);
             text-decoration: none;
-            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--orange);
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .nav-link {
-            color: var(--text-secondary);
+            color: var(--gray-light);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
             position: relative;
         }
 
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: width 0.3s ease;
+        }
+
         .nav-link:hover {
-            color: var(--primary-color);
-            text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+            color: var(--white);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
         }
 
         .cta-btn {
-            background: var(--gradient-1);
-            color: var(--secondary-color);
-            padding: 0.7rem 1.5rem;
+            background: var(--orange);
+            color: var(--white);
+            padding: 0.75rem 1.75rem;
             border: none;
-            border-radius: 25px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -123,54 +122,63 @@
         }
 
         .cta-btn:hover {
+            background: var(--orange-hover);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-glow);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 2rem;
+            padding: 8rem 2rem 4rem;
             position: relative;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-secondary) 100%);
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             z-index: 2;
         }
 
         .hero-subtitle {
             font-family: 'JetBrains Mono', monospace;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards 0.2s;
+            color: var(--orange);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         .hero-title {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 800;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards 0.4s;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
         }
 
         .hero-description {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
+            font-size: 1.25rem;
+            color: var(--gray-light);
+            margin-bottom: 2.5rem;
             line-height: 1.6;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards 0.6s;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-cta {
@@ -178,22 +186,21 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards 0.8s;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
         }
 
-        /* Section Styles */
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--bg-dark);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -201,24 +208,21 @@
         }
 
         .section {
-            padding: 5rem 0;
+            padding: 6rem 0;
         }
 
         .section-title {
             font-size: 2.5rem;
-            font-weight: 700;
+            font-weight: 800;
             text-align: center;
             margin-bottom: 1rem;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
         }
 
         .section-subtitle {
             text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
+            color: var(--gray-light);
+            margin-bottom: 4rem;
             font-size: 1.1rem;
         }
 
@@ -231,13 +235,12 @@
         }
 
         .topic-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2.5rem;
             text-align: center;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            border: 1px solid var(--gray-border);
             position: relative;
             overflow: hidden;
         }
@@ -249,7 +252,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: var(--gradient-1);
+            background: var(--orange);
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
@@ -260,27 +263,25 @@
 
         .topic-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-card);
+            border-color: var(--orange);
+            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
         }
 
         .topic-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         .topic-title {
             font-size: 1.3rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
         .topic-count {
-            color: var(--text-secondary);
+            color: var(--gray-light);
             font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
         }
 
         /* Featured Posts */
@@ -291,32 +292,31 @@
         }
 
         .post-card {
-            background: var(--card-bg);
-            border-radius: 20px;
+            background: var(--bg-card);
+            border-radius: 16px;
             overflow: hidden;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            border: 1px solid var(--gray-border);
         }
 
         .post-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-card);
+            border-color: var(--orange);
+            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
         }
 
         .post-image {
             width: 100%;
             height: 200px;
-            background: var(--gradient-2);
+            background: linear-gradient(135deg, var(--orange) 0%, #ff8555 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: white;
+            font-size: 3.5rem;
         }
 
         .post-content {
-            padding: 1.5rem;
+            padding: 2rem;
         }
 
         .post-meta {
@@ -324,117 +324,172 @@
             gap: 1rem;
             margin-bottom: 1rem;
             font-size: 0.9rem;
-            color: var(--text-secondary);
+            color: var(--gray-light);
+            align-items: center;
         }
 
         .post-tag {
-            background: rgba(0, 255, 136, 0.2);
-            color: var(--primary-color);
-            padding: 0.2rem 0.8rem;
-            border-radius: 12px;
+            background: rgba(255, 107, 53, 0.15);
+            color: var(--orange);
+            padding: 0.3rem 0.9rem;
+            border-radius: 6px;
             font-size: 0.8rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .post-title {
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 1.3rem;
+            font-weight: 700;
             margin-bottom: 0.8rem;
             line-height: 1.4;
         }
 
         .post-excerpt {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1rem;
+            color: var(--gray-light);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
         }
 
         .read-more {
-            color: var(--primary-color);
+            color: var(--orange);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .read-more:hover {
-            text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+            gap: 0.75rem;
+        }
+
+        /* Terminal */
+        .terminal {
+            background: var(--bg-card);
+            border: 1px solid var(--orange);
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--orange);
+            margin: 3rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .terminal::before {
+            content: '$ ';
+            color: var(--white);
+        }
+
+        .terminal:hover {
+            background: rgba(255, 107, 53, 0.1);
+            border-color: var(--orange-hover);
         }
 
         /* Footer */
         .footer {
-            background: var(--background-darker);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 3rem 0 1rem;
-            text-align: center;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--gray-border);
+            padding: 4rem 0 2rem;
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
         .footer-section h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.75rem;
         }
 
         .footer-link {
-            color: var(--text-secondary);
+            color: var(--gray-light);
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .footer-link:hover {
-            color: var(--primary-color);
+            color: var(--orange);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
             gap: 1rem;
-            margin: 2rem 0;
+            margin: 3rem 0 2rem;
         }
 
         .social-link {
-            width: 40px;
-            height: 40px;
-            background: var(--card-bg);
+            width: 45px;
+            height: 45px;
+            background: var(--bg-card);
+            border: 1px solid var(--gray-border);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-secondary);
             text-decoration: none;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
         }
 
         .social-link:hover {
-            background: var(--primary-color);
-            color: var(--secondary-color);
+            background: var(--orange);
+            border-color: var(--orange);
             transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
         }
 
         .copyright {
-            color: var(--text-secondary);
+            text-align: center;
+            color: var(--gray-light);
             font-size: 0.9rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-border);
         }
 
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
             .nav-menu {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 2rem;
+                border-bottom: 1px solid var(--gray-border);
+            }
+
+            .nav-menu.active {
+                display: flex;
             }
             
             .mobile-menu-btn {
@@ -455,50 +510,33 @@
             }
         }
 
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+            .section-title {
+                font-size: 2rem;
+            }
 
-        /* Terminal-style elements */
-        .terminal {
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid var(--primary-color);
-            border-radius: 8px;
-            padding: 1rem;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--primary-color);
-            margin: 2rem 0;
-        }
-
-        .terminal::before {
-            content: '$ ';
-            color: var(--accent-color);
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    
     <!-- Header -->
     <header class="header">
         <nav class="nav-container">
-            <a href="./index.html" class="logo">Faheem</a>
+            <a href="../index.html" class="logo">Faheem<span>.</span></a>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#topics" class="nav-link">Topics</a></li>
                 <li><a href="#featured" class="nav-link">Featured</a></li>
                 <li><a href="#resources" class="nav-link">Resources</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <a href="#" class="cta-btn">Subscribe</a>
+            <a href="#contact" class="cta-btn">Subscribe</a>
             <button class="mobile-menu-btn">☰</button>
         </nav>
     </header>
@@ -506,7 +544,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <p class="hero-subtitle">// Advanced Cybersecurity Insights</p>
+            <p class="hero-subtitle">Cybersecurity Insights</p>
             <h1 class="hero-title">Secure the Digital Future</h1>
             <p class="hero-description">
                 Stay ahead of evolving cyber threats with expert analysis, cutting-edge security techniques, 
@@ -514,7 +552,7 @@
             </p>
             <div class="hero-cta">
                 <a href="#featured" class="cta-btn">Explore Articles</a>
-                <a href="#topics" class="cta-btn" style="background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color);">Browse Topics</a>
+                <a href="#topics" class="cta-btn btn-secondary">Browse Topics</a>
             </div>
         </div>
     </section>
@@ -582,7 +620,6 @@
                         <h3 class="post-title">Understanding and Defeating Identity Theft</h3>
                         <p class="post-excerpt">
                             Identity theft is growing rapidly. Safeguard your identity with strong passwords, two-factor authentication, regular monitoring, and smart digital habits. Stay alert.
-
                         </p>
                         <a href="Identity-Theft.html" class="read-more">Read More →</a>
                     </div>
@@ -709,7 +746,7 @@ nmap -sS -O target_ip # TCP SYN scan with OS detection
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Categories</h3>
-                    <ul style="list-style: none;">
+                    <ul>
                         <li><a href="#" class="footer-link">Penetration Testing</a></li>
                         <li><a href="#" class="footer-link">Digital Forensics</a></li>
                         <li><a href="#" class="footer-link">Malware Analysis</a></li>
@@ -719,7 +756,7 @@ nmap -sS -O target_ip # TCP SYN scan with OS detection
                 
                 <div class="footer-section">
                     <h3>Resources</h3>
-                    <ul style="list-style: none;">
+                    <ul>
                         <li><a href="#" class="footer-link">Security Tools</a></li>
                         <li><a href="#" class="footer-link">Vulnerability Database</a></li>
                         <li><a href="#" class="footer-link">Threat Intelligence</a></li>
@@ -729,7 +766,7 @@ nmap -sS -O target_ip # TCP SYN scan with OS detection
                 
                 <div class="footer-section">
                     <h3>Community</h3>
-                    <ul style="list-style: none;">
+                    <ul>
                         <li><a href="#" class="footer-link">Forums</a></li>
                         <li><a href="#" class="footer-link">Discord Server</a></li>
                         <li><a href="#" class="footer-link">Contribute</a></li>
@@ -739,20 +776,20 @@ nmap -sS -O target_ip # TCP SYN scan with OS detection
             </div>
             
             <div class="social-links">
-                <a href="#" class="social-link">📱</a>
-                <a href="#" class="social-link">🐦</a>
-                <a href="#" class="social-link">💼</a>
-                <a href="#" class="social-link">📺</a>
+                <a href="https://www.facebook.com/faheeem.k" class="social-link">f</a>
+                <a href="https://x.com/faheemkolakodan" class="social-link">𝕏</a>
+                <a href="https://www.linkedin.com/in/faheem-vapt/" class="social-link">in</a>
+                <a href="https://www.youtube.com/@faheemkolakodan" class="social-link">▶</a>
             </div>
             
             <p class="copyright">
-                © 2025 Faheem.
+                © 2024 Faheem. All rights reserved
             </p>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -784,49 +821,24 @@ nmap -sS -O target_ip # TCP SYN scan with OS detection
             observer.observe(el);
         });
 
-        // Header background on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(13, 13, 13, 0.98)';
-            } else {
-                header.style.background = 'rgba(13, 13, 13, 0.95)';
-            }
-        });
-
-        // Interactive terminal
-        const terminal = document.querySelector('.terminal');
-        if (terminal) {
-            terminal.addEventListener('click', () => {
-                terminal.style.background = 'rgba(0, 255, 136, 0.1)';
-                setTimeout(() => {
-                    terminal.style.background = 'rgba(0, 0, 0, 0.8)';
-                }, 200);
-            });
-        }
-
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navMenu = document.querySelector('.nav-menu');
         
         mobileMenuBtn.addEventListener('click', () => {
-            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+            navMenu.classList.toggle('active');
         });
 
-        // Dynamic typing effect for hero subtitle
-        const subtitle = document.querySelector('.hero-subtitle');
-        const text = '// Advanced Cybersecurity Insights';
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < text.length) {
-                subtitle.textContent = text.slice(0, i + 1);
-                i++;
-                setTimeout(typeWriter, 50);
-            }
+        // Terminal interaction
+        const terminal = document.querySelector('.terminal');
+        if (terminal) {
+            terminal.addEventListener('click', () => {
+                terminal.style.background = 'rgba(255, 107, 53, 0.2)';
+                setTimeout(() => {
+                    terminal.style.background = 'var(--bg-card)';
+                }, 200);
+            });
         }
-        
-        setTimeout(typeWriter, 1000);
     </script>
 </body>
 </html>
