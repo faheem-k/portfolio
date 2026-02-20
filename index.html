@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Faheem — Cybersecurity Professional</title>
+<title>Faheem — Cybersecurity</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script async src="https://cdn.jsdelivr.net/npm/three@r128/build/three.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
@@ -17,27 +19,24 @@
   --pink:#e879f9;
   --border:rgba(168,85,247,.15);
 }
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none;}
+html{scroll-behavior:smooth;font-size:16px;}body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none;will-change:scroll-position;}img{loading:lazy;}
 
 /* NOISE */
-body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
-background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");opacity:.5;}
+body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");opacity:.8;}
 
 /* CURSOR */
-#cur{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--violet);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .2s,height .2s,background .2s;}
-#ring{position:fixed;width:40px;height:40px;border-radius:50%;border:1px solid rgba(168,85,247,.4);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .35s,height .35s,border-color .3s;}
+#cur{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--violet);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .2s,height .2s,background .2s;will-change:transform;}
+#ring{position:fixed;width:40px;height:40px;border-radius:50%;border:1px solid rgba(168,85,247,.4);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .35s,height .35s,border-color .3s;will-change:transform;}
 #cur.h{width:18px;height:18px;background:var(--pink);}
 #ring.h{width:65px;height:65px;border-color:var(--violet);}
 
 /* PRELOADER */
-#pre{position:fixed;inset:0;background:var(--bg);z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .9s,visibility .9s;}
+#pre{position:fixed;inset:0;background:var(--bg);z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .7s,visibility .7s;}
 #pre.out{opacity:0;visibility:hidden;}
-.pre-logo{font-family:'Playfair Display',serif;font-size:clamp(4rem,10vw,7rem);font-weight:900;letter-spacing:-.04em;
-background:linear-gradient(135deg,#fff 0%,var(--violet) 60%,var(--pink) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:pb 1.8s ease-in-out infinite;}
-@keyframes pb{0%,100%{opacity:1;}50%{opacity:.3;}}
+.pre-logo{font-family:'Playfair Display',serif;font-size:clamp(4rem,10vw,7rem);font-weight:900;letter-spacing:-.04em;background:linear-gradient(135deg,#fff 0%,var(--violet) 60%,var(--pink) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:pb 1.6s ease-in-out infinite;will-change:opacity;}
+@keyframes pb{0%,100%{opacity:1;}50%{opacity:.4;}}
 .pre-bar{width:180px;height:1px;background:var(--border);margin-top:1.8rem;overflow:hidden;}
-.pre-bar::after{content:'';display:block;width:100%;height:100%;background:linear-gradient(90deg,transparent,var(--violet),transparent);animation:bs 1.5s linear infinite;}
+.pre-bar::after{content:'';display:block;width:100%;height:100%;background:linear-gradient(90deg,transparent,var(--violet),transparent);animation:bs 1.3s linear infinite;will-change:transform;}
 @keyframes bs{from{transform:translateX(-100%);}to{transform:translateX(100%);}}
 
 /* PARTICLES CANVAS */
@@ -46,11 +45,11 @@ background:linear-gradient(135deg,#fff 0%,var(--violet) 60%,var(--pink) 100%);-w
 /* NAV */
 nav{position:fixed;top:0;width:100%;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:2rem 5vw;transition:padding .4s,background .4s;}
 nav.s{padding:1.2rem 5vw;background:rgba(8,5,15,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-.nlogo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--ink);text-decoration:none;letter-spacing:-.02em;}
+.nlogo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--ink);text-decoration:none;letter-spacing:-.02em;}
 .nlinks{display:flex;gap:2.5rem;list-style:none;}
 .nlinks a{color:var(--ink2);text-decoration:none;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;transition:color .3s;}
 .nlinks a:hover{color:var(--ink);}
-.ncta{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:.6rem 1.4rem;border:1px solid var(--border);border-radius:100px;background:rgba(124,58,237,.1);transition:all .3s;}
+.ncta{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:.6rem 1.4rem;border:1px solid var(--border);border-radius:100px;background:rgba(124,58,237,.1);transition:all .2s;}
 .ncta:hover{background:rgba(124,58,237,.25);border-color:var(--violet);}
 
 /* HERO */
@@ -70,9 +69,9 @@ h1.hero-h{position:relative;z-index:2;font-family:'Playfair Display',serif;font-
 .hero-footer{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2rem;}
 .hero-desc{color:var(--ink2);font-size:1rem;line-height:1.8;font-weight:300;max-width:360px;}
 .hbtns{display:flex;gap:1rem;flex-wrap:wrap;}
-.btn-p{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:.85rem 1.9rem;border-radius:100px;background:linear-gradient(135deg,var(--purple),var(--pink));transition:transform .3s,box-shadow .3s;box-shadow:0 0 0 0 rgba(124,58,237,0);}
+.btn-p{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:.85rem 1.9rem;border-radius:100px;background:linear-gradient(135deg,var(--purple),var(--pink));transition:transform .2s,box-shadow .2s;box-shadow:0 0 0 0 rgba(124,58,237,0);will-change:transform;}
 .btn-p:hover{transform:scale(1.05);box-shadow:0 8px 40px rgba(124,58,237,.5);}
-.btn-o{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);text-decoration:none;padding:.85rem 1.9rem;border-radius:100px;border:1px solid var(--border);transition:all .3s;}
+.btn-o{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);text-decoration:none;padding:.85rem 1.9rem;border-radius:100px;border:1px solid var(--border);transition:all .2s;}
 .btn-o:hover{color:var(--ink);border-color:var(--violet);}
 .hscroll{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink2);display:flex;align-items:center;gap:.8rem;}
 .hscroll::after{content:'';display:block;width:50px;height:1px;background:var(--ink2);animation:sl 2s ease-in-out infinite;}
@@ -117,18 +116,18 @@ h1.hero-h{position:relative;z-index:2;font-family:'Playfair Display',serif;font-
 .proj-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2rem;max-width:1280px;margin:0 auto 4rem;}
 .proj-top-desc{color:var(--ink2);max-width:320px;line-height:1.8;font-size:.9rem;}
 .proj-list{max-width:1280px;margin:0 auto;}
-.pr{display:grid;grid-template-columns:1fr 1fr;gap:2rem;border-top:1px solid var(--border);padding:3rem 0;cursor:none;position:relative;}
-.pr::after{content:'';position:absolute;inset:0 -5vw;background:rgba(124,58,237,.04);border-radius:16px;opacity:0;transition:opacity .4s;z-index:-1;}
+.pr{display:grid;grid-template-columns:1fr 1fr;gap:2rem;border-top:1px solid var(--border);padding:3rem 0;cursor:none;position:relative;will-change:background;}
+.pr::after{content:'';position:absolute;inset:0 -5vw;background:rgba(124,58,237,.04);border-radius:16px;opacity:0;transition:opacity .3s;z-index:-1;}
 .pr:hover::after{opacity:1;}
 .pr:last-child{border-bottom:1px solid var(--border);}
 .pnum{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--violet);letter-spacing:.15em;margin-bottom:.8rem;}
-.ptitle{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.8vw,2.6rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;transition:color .3s;}
+.ptitle{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.8vw,2.6rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;transition:color .2s;}
 .pr:hover .ptitle{color:var(--violet);}
 .ptags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem;}
 .ptag{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--ink2);border:1px solid var(--border);padding:.22rem .65rem;border-radius:100px;letter-spacing:.05em;}
 .pr-right{display:flex;flex-direction:column;justify-content:space-between;padding-top:.3rem;}
 .pdesc{color:var(--ink2);line-height:1.8;font-size:.9rem;max-width:420px;}
-.pico{width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(232,121,249,.15));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.6rem;align-self:flex-end;transition:transform .35s;}
+.pico{width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(232,121,249,.15));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.6rem;align-self:flex-end;transition:transform .25s;will-change:transform;}
 .pr:hover .pico{transform:scale(1.1) rotate(-6deg);}
 
 /* STATEMENT */
@@ -141,9 +140,9 @@ h1.hero-h{position:relative;z-index:2;font-family:'Playfair Display',serif;font-
 /* SKILLS */
 .sk-wrap{max-width:1280px;margin:0 auto;}
 .sk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:4rem;}
-.skb{padding:2.2rem 1.8rem;background:rgba(124,58,237,.05);border:1px solid var(--border);border-radius:20px;position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.23,1,.32,1),box-shadow .4s;}
+.skb{padding:2.2rem 1.8rem;background:rgba(124,58,237,.05);border:1px solid var(--border);border-radius:20px;position:relative;overflow:hidden;transition:transform .3s cubic-bezier(.23,1,.32,1),box-shadow .3s;will-change:transform;}
 .skb:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(124,58,237,.2);}
-.skb::before{content:'';position:absolute;inset:0;border-radius:20px;background:linear-gradient(135deg,rgba(124,58,237,.1),transparent);opacity:0;transition:opacity .4s;}
+.skb::before{content:'';position:absolute;inset:0;border-radius:20px;background:linear-gradient(135deg,rgba(124,58,237,.1),transparent);opacity:0;transition:opacity .3s;}
 .skb:hover::before{opacity:1;}
 .skbl{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--violet);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.6rem;}
 .si-wrap{display:flex;flex-direction:column;gap:1.1rem;}
@@ -151,11 +150,11 @@ h1.hero-h{position:relative;z-index:2;font-family:'Playfair Display',serif;font-
 .sn{font-size:.88rem;color:var(--ink);font-weight:500;}
 .sp{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--violet);}
 .sbar{width:100%;height:3px;background:rgba(124,58,237,.15);border-radius:3px;overflow:hidden;}
-.sfill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--purple),var(--pink));width:0;transition:width 1.4s cubic-bezier(.23,1,.32,1);}
+.sfill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--purple),var(--pink));width:0;transition:width 1.2s cubic-bezier(.23,1,.32,1);will-change:width;}
 
 /* CERTS */
 .certs-row{display:grid;grid-template-columns:repeat(5,1fr);gap:1.4rem;max-width:1280px;margin:3rem auto 0;}
-.cb{padding:1.8rem 1.4rem;text-align:center;background:rgba(124,58,237,.05);border:1px solid var(--border);border-radius:18px;transition:all .4s cubic-bezier(.23,1,.32,1);}
+.cb{padding:1.8rem 1.4rem;text-align:center;background:rgba(124,58,237,.05);border:1px solid var(--border);border-radius:18px;transition:all .3s cubic-bezier(.23,1,.32,1);will-change:transform;}
 .cb:hover{transform:translateY(-6px) scale(1.03);border-color:rgba(168,85,247,.35);box-shadow:0 20px 40px rgba(124,58,237,.2);}
 .cbe{font-size:2rem;margin-bottom:.9rem;}
 .cbt{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;margin-bottom:.25rem;}
@@ -167,7 +166,7 @@ h1.hero-h{position:relative;z-index:2;font-family:'Playfair Display',serif;font-
 .clabel{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--violet);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem;}
 .clabel::before{content:'';width:28px;height:1px;background:var(--violet);}
 .clinks{display:flex;flex-direction:column;gap:0;margin-top:2rem;}
-.clink{display:flex;align-items:center;gap:1rem;color:var(--ink2);text-decoration:none;font-size:.9rem;padding:1rem 0;border-bottom:1px solid var(--border);transition:color .3s,padding-left .3s;}
+.clink{display:flex;align-items:center;gap:1rem;color:var(--ink2);text-decoration:none;font-size:.9rem;padding:1rem 0;border-bottom:1px solid var(--border);transition:color .2s,padding-left .2s;}
 .clink:hover{color:var(--ink);padding-left:.5rem;}
 .clink-ico{width:34px;height:34px;border-radius:10px;background:rgba(124,58,237,.1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
 .form-card{background:rgba(124,58,237,.05);border:1px solid var(--border);border-radius:26px;padding:2.8rem;}
@@ -177,7 +176,7 @@ h1.hero-h{position:relative;z-index:2;font-family:'Playfair Display',serif;font-
 .fg input,.fg textarea{background:rgba(124,58,237,.06);border:1px solid var(--border);border-radius:12px;padding:.8rem 1rem;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.92rem;outline:none;transition:border-color .3s,box-shadow .3s;}
 .fg input:focus,.fg textarea:focus{border-color:var(--violet);box-shadow:0 0 0 3px rgba(124,58,237,.12);}
 .fg textarea{resize:vertical;min-height:115px;}
-.fsub{width:100%;padding:.95rem;border:none;border-radius:14px;margin-top:.3rem;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;cursor:none;box-shadow:0 8px 30px rgba(124,58,237,.35);transition:transform .3s,box-shadow .3s;}
+.fsub{width:100%;padding:.95rem;border:none;border-radius:14px;margin-top:.3rem;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;cursor:none;box-shadow:0 8px 30px rgba(124,58,237,.35);transition:transform .2s,box-shadow .2s;will-change:transform;}
 .fsub:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(124,58,237,.55);}
 
 /* FOOTER */
@@ -189,14 +188,14 @@ footer{position:relative;z-index:2;display:flex;justify-content:space-between;al
 .flinks a:hover{color:var(--violet);}
 
 /* ANIMATIONS */
-.fu{opacity:0;transform:translateY(40px);transition:opacity .95s cubic-bezier(.16,1,.3,1),transform .95s cubic-bezier(.16,1,.3,1);}
+.fu{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);will-change:opacity,transform;}
 .fu.in{opacity:1;transform:translateY(0);}
-.st>*{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
-.st.in>*:nth-child(1){opacity:1;transform:translateY(0);transition-delay:.06s;}
-.st.in>*:nth-child(2){opacity:1;transform:translateY(0);transition-delay:.14s;}
-.st.in>*:nth-child(3){opacity:1;transform:translateY(0);transition-delay:.22s;}
-.st.in>*:nth-child(4){opacity:1;transform:translateY(0);transition-delay:.30s;}
-.st.in>*:nth-child(5){opacity:1;transform:translateY(0);transition-delay:.38s;}
+.st>*{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);will-change:opacity,transform;}
+.st.in>*:nth-child(1){opacity:1;transform:translateY(0);transition-delay:.04s;}
+.st.in>*:nth-child(2){opacity:1;transform:translateY(0);transition-delay:.1s;}
+.st.in>*:nth-child(3){opacity:1;transform:translateY(0);transition-delay:.16s;}
+.st.in>*:nth-child(4){opacity:1;transform:translateY(0);transition-delay:.22s;}
+.st.in>*:nth-child(5){opacity:1;transform:translateY(0);transition-delay:.28s;}
 
 /* RESPONSIVE */
 @media(max-width:1024px){
@@ -266,18 +265,18 @@ footer{position:relative;z-index:2;display:flex;justify-content:space-between;al
 <section id="about" class="S">
   <div class="about-grid">
     <div class="about-card fu">
-      <div class="aico">🛡️</div>
-      <h3>Faheem Kolakodan</h3>
+      <div class="aico">�</div>
+      <h3>Faheem</h3>
       <p>Associate Cyber Security Test Engineer at John &amp; Smith. M.Sc. Computer Science (University of Kerala). Specialising in web application, API, and network penetration testing.</p>
       <p>CERT-In empanelled participant and published security researcher covering Identity Theft, Web App Pentesting, and Incident Response.</p>
       <div class="pills">
         <span class="pill">Burp Suite</span><span class="pill">Metasploit</span><span class="pill">Nmap</span><span class="pill">Wireshark</span><span class="pill">Kali Linux</span><span class="pill">Python</span><span class="pill">OWASP ZAP</span><span class="pill">SQLmap</span><span class="pill">Bloodhound</span>
       </div>
       <div class="ametrics st">
-        <div class="am"><div class="amn">5+</div><div class="aml">Certifications</div></div>
-        <div class="am"><div class="amn">1yr</div><div class="aml">Professional Exp.</div></div>
-        <div class="am"><div class="amn">10+</div><div class="aml">Tools Mastered</div></div>
-        <div class="am"><div class="amn">3</div><div class="aml">Published Articles</div></div>
+        <div class="am"><div class="amn">5+</div><div class="aml">Certs</div></div>
+        <div class="am"><div class="amn">1yr</div><div class="aml">XP</div></div>
+        <div class="am"><div class="amn">10+</div><div class="aml">Tools</div></div>
+        <div class="am"><div class="amn">3</div><div class="aml">Articles</div></div>
       </div>
     </div>
     <div class="about-text">
@@ -286,7 +285,7 @@ footer{position:relative;z-index:2;display:flex;justify-content:space-between;al
       <p class="fu">I hunt vulnerabilities before attackers do. Every engagement delivers a clear, actionable report with risk-prioritised remediation — not just a list of findings.</p>
       <p class="fu">Based in Calicut, Kerala. Available remotely and on-site across India.</p>
       <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;" class="fu">
-        <a href="mailto:faheemkolakodan@gmail.com" class="btn-p">📧 Email Faheem</a>
+        <a href="mailto:faheemkolakodan@gmail.com" class="btn-p">✉️ Email</a>
         <a href="https://www.linkedin.com/in/faheem-vapt/" target="_blank" class="btn-o">LinkedIn →</a>
       </div>
     </div>
@@ -305,23 +304,23 @@ footer{position:relative;z-index:2;display:flex;justify-content:space-between;al
   <div class="proj-list">
     <div class="pr fu">
       <div><div class="pnum">01</div><div class="ptitle">E-Commerce Web App VAPT</div><div class="ptags"><span class="ptag">Burp Suite</span><span class="ptag">SQLmap</span><span class="ptag">OWASP</span><span class="ptag">Web App</span></div></div>
-      <div class="pr-right"><p class="pdesc">Full-scope pentest of a multi-vendor platform. Uncovered SQLi, XSS, IDOR, and CSRF with business-impact analysis and a prioritised remediation roadmap.</p><div class="pico">🌐</div></div>
+      <div class="pr-right"><p class="pdesc">Full-scope pentest of a multi-vendor platform. Uncovered SQLi, XSS, IDOR, and CSRF with business-impact analysis and a prioritised remediation roadmap.</p><div class="pico">●</div></div>
     </div>
     <div class="pr fu">
       <div><div class="pnum">02</div><div class="ptitle">REST API Security Assessment</div><div class="ptags"><span class="ptag">OWASP API Top 10</span><span class="ptag">Postman</span><span class="ptag">Python</span></div></div>
-      <div class="pr-right"><p class="pdesc">Identified auth flaws, rate-limiting bypass, mass assignment, and excessive data exposure across a production REST API.</p><div class="pico">🔌</div></div>
+      <div class="pr-right"><p class="pdesc">Identified auth flaws, rate-limiting bypass, mass assignment, and excessive data exposure across a production REST API.</p><div class="pico">⚡</div></div>
     </div>
     <div class="pr fu">
       <div><div class="pnum">03</div><div class="ptitle">Network Infrastructure Pentest</div><div class="ptags"><span class="ptag">Nmap</span><span class="ptag">Metasploit</span><span class="ptag">Bloodhound</span><span class="ptag">Nessus</span></div></div>
-      <div class="pr-right"><p class="pdesc">Internal network engagement: recon, privilege escalation, lateral movement, and Active Directory enumeration with full attack-chain narrative.</p><div class="pico">🏢</div></div>
+      <div class="pr-right"><p class="pdesc">Internal network engagement: recon, privilege escalation, lateral movement, and Active Directory enumeration with full attack-chain narrative.</p><div class="pico">◆</div></div>
     </div>
     <div class="pr fu">
       <div><div class="pnum">04</div><div class="ptitle">CERT-In Engagement</div><div class="ptags"><span class="ptag">CERT-In</span><span class="ptag">Coordinated Disclosure</span><span class="ptag">VAPT</span></div></div>
-      <div class="pr-right"><p class="pdesc">National-level vulnerability assessment under CERT-In empanelment, supporting coordinated disclosure for critical infrastructure.</p><div class="pico">🔍</div></div>
+      <div class="pr-right"><p class="pdesc">National-level vulnerability assessment under CERT-In empanelment, supporting coordinated disclosure for critical infrastructure.</p><div class="pico">◉</div></div>
     </div>
     <div class="pr fu">
       <div><div class="pnum">05</div><div class="ptitle">Cybersecurity Blog &amp; Research</div><div class="ptags"><span class="ptag">Threat Intel</span><span class="ptag">Incident Response</span><span class="ptag">MITRE</span></div></div>
-      <div class="pr-right"><p class="pdesc">Published articles on Identity Theft, Modern Web App Pentesting, and Incident Response Teams. AI-assisted threat hunting blog for actionable detection strategies.</p><div class="pico">📝</div></div>
+      <div class="pr-right"><p class="pdesc">Published articles on Identity Theft, Modern Web App Pentesting, and Incident Response Teams. AI-assisted threat hunting blog for actionable detection strategies.</p><div class="pico">▶</div></div>
     </div>
   </div>
 </section>
@@ -381,11 +380,11 @@ footer{position:relative;z-index:2;display:flex;justify-content:space-between;al
     <h3 class="fu" style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;letter-spacing:-.04em;">Certifications.</h3>
   </div>
   <div class="certs-row st">
-    <div class="cb"><div class="cbe">🏆</div><div class="cbt">CEH v12</div><div class="cbs">Certified Ethical Hacker</div></div>
-    <div class="cb"><div class="cbe">🔒</div><div class="cbt">ISO 27001</div><div class="cbs">Lead Auditor — ISMS</div></div>
-    <div class="cb"><div class="cbe">🛡️</div><div class="cbt">ISO 27701</div><div class="cbs">Lead Auditor — Privacy</div></div>
-    <div class="cb"><div class="cbe">✅</div><div class="cbt">ISO 9001</div><div class="cbs">Lead Auditor — Quality</div></div>
-    <div class="cb"><div class="cbe">💼</div><div class="cbt">ISO 20000-1</div><div class="cbs">Lead Auditor — ITSM</div></div>
+    <div class="cb"><div class="cbe">★</div><div class="cbt">CEH v12</div><div class="cbs">Ethical Hacker</div></div>
+    <div class="cb"><div class="cbe">◆</div><div class="cbt">ISO 27001</div><div class="cbs">ISMS Auditor</div></div>
+    <div class="cb"><div class="cbe">⬢</div><div class="cbt">ISO 27701</div><div class="cbs">Privacy Auditor</div></div>
+    <div class="cb"><div class="cbe">◉</div><div class="cbt">ISO 9001</div><div class="cbs">Quality Auditor</div></div>
+    <div class="cb"><div class="cbe">✦</div><div class="cbt">ISO 20000-1</div><div class="cbs">ITSM Auditor</div></div>
   </div>
 </section>
 
@@ -399,11 +398,11 @@ footer{position:relative;z-index:2;display:flex;justify-content:space-between;al
         <div class="clabel">Reach Out</div>
         <p style="color:var(--ink2);line-height:1.85;max-width:380px;font-size:.95rem;">Whether you need a pentest, a security audit, or want to discuss a vulnerability — I'm reachable and responsive.</p>
         <div class="clinks">
-          <a href="mailto:faheemkolakodan@gmail.com" class="clink"><span class="clink-ico">📧</span>faheemkolakodan@gmail.com</a>
-          <a href="tel:+918547069212" class="clink"><span class="clink-ico">📞</span>+91 8547069212</a>
-          <a href="https://linkedin.com/in/faheem-vapt/" target="_blank" class="clink"><span class="clink-ico">🔗</span>linkedin.com/in/faheem-vapt</a>
-          <a href="https://x.com/faheemkolakodan" target="_blank" class="clink"><span class="clink-ico">🐦</span>@faheemkolakodan</a>
-          <a href="https://www.youtube.com/@faheemkolakodan" target="_blank" class="clink"><span class="clink-ico">▶️</span>YouTube: @faheemkolakodan</a>
+          <a href="mailto:faheemkolakodan@gmail.com" class="clink"><span class="clink-ico">✉</span>faheemkolakodan@gmail.com</a>
+          <a href="tel:+918547069212" class="clink"><span class="clink-ico">◐</span>+91 8547069212</a>
+          <a href="https://linkedin.com/in/faheem-vapt/" target="_blank" class="clink"><span class="clink-ico">◈</span>linkedin.com/in/faheem-vapt</a>
+          <a href="https://x.com/faheemkolakodan" target="_blank" class="clink"><span class="clink-ico">◉</span>@faheemkolakodan</a>
+          <a href="https://www.youtube.com/@faheemkolakodan" target="_blank" class="clink"><span class="clink-ico">▷</span>YouTube: @faheemkolakodan</a>
         </div>
       </div>
       <div class="form-card fu">
@@ -422,8 +421,8 @@ footer{position:relative;z-index:2;display:flex;justify-content:space-between;al
 </section>
 
 <footer>
-  <div class="flogo">Faheem.</div>
-  <div class="fcopy">© 2025 FAHEEM KOLAKODAN · CALICUT, KERALA · CEH v12</div>
+  <div class="flogo">F</div>
+  <div class="fcopy">© 2025 FAHEEM · CALICUT · CEH v12</div>
   <div class="flinks">
     <a href="https://linkedin.com/in/faheem-vapt/" target="_blank">LinkedIn</a>
     <a href="https://x.com/faheemkolakodan" target="_blank">Twitter</a>
@@ -432,46 +431,7 @@ footer{position:relative;z-index:2;display:flex;justify-content:space-between;al
   </div>
 </footer>
 
-<script>
-/* PRELOADER */
-window.addEventListener('load',()=>setTimeout(()=>document.getElementById('pre').classList.add('out'),700));
-
-/* CURSOR */
-const cur=document.getElementById('cur'),ring=document.getElementById('ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function lr(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(lr);})();
-document.querySelectorAll('a,button,.pr,.skb,.cb').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.classList.add('h');ring.classList.add('h');});
-  el.addEventListener('mouseleave',()=>{cur.classList.remove('h');ring.classList.remove('h');});
-});
-
-/* PARTICLES */
-const pc=document.getElementById('pc'),ctx=pc.getContext('2d');
-function resize(){pc.width=innerWidth;pc.height=innerHeight;}resize();addEventListener('resize',resize);
-const pts=Array.from({length:80},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.4+.4,a:Math.random()*.45+.08,h:Math.random()<.5?265:300}));
-(function draw(){
-  ctx.clearRect(0,0,pc.width,pc.height);
-  pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=pc.width;if(p.x>pc.width)p.x=0;if(p.y<0)p.y=pc.height;if(p.y>pc.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`hsla(${p.h},75%,70%,${p.a})`;ctx.fill();});
-  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);if(d<110){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(124,58,237,${.16*(1-d/110)})`;ctx.lineWidth=.5;ctx.stroke();}}
-  requestAnimationFrame(draw);
-})();
-
-/* NAV */
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>60));
-
-/* PARALLAX WATERMARK */
-window.addEventListener('scroll',()=>{const el=document.getElementById('wm');if(el)el.style.transform=`translate(-50%,calc(-50% + ${scrollY*.12}px))`;});
-
-/* INTERSECTION OBSERVER */
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('.sfill').forEach(b=>b.style.width=b.dataset.w+'%');}});
-},{threshold:.08});
-document.querySelectorAll('.fu,.st').forEach(el=>io.observe(el));
-document.querySelectorAll('.sfill').forEach(b=>{const o=new IntersectionObserver(en=>{if(en[0].isIntersecting){b.style.width=b.dataset.w+'%';o.disconnect();}},{threshold:.3});o.observe(b);});
-
-/* FORM */
-function hf(e){e.preventDefault();const b=document.getElementById('fsb');b.textContent='Sending…';b.disabled=true;setTimeout(()=>{b.textContent='✅ Sent!';setTimeout(()=>{b.textContent='Send Message →';b.disabled=false;e.target.reset();},3000);},1500);}
-</script>
+<script src="assets/js/script.js"></script>
+<script src="assets/js/three-setup.js"></script>
 </body>
 </html>
